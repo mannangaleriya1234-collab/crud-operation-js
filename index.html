@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cartly - E-Commerce CRUD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Cartly</h1><span class="grow"></span>
+  <button class="primary" id="addBtn">+ Add product</button>
+  <button id="cartBtn">Cart <span class="badge" id="cartCount">0</span></button>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search products..." aria-label="Search products">
+    <select id="filter" aria-label="Filter by category"></select>
+    <select id="sort" aria-label="Sort products">
+      <option value="">Sort: default</option>
+      <option value="low">Price: low to high</option>
+      <option value="high">Price: high to low</option>
+      <option value="az">Name: A to Z</option>
+      <option value="za">Name: Z to A</option>
+    </select>
+  </div>
+  <div id="grid"></div>
+</main>
+
+<!-- Add / Edit modal -->
+<div class="overlay" id="formOverlay">
+  <form class="modal" id="form">
+    <h2 id="formTitle">Add product</h2>
+    <label>Name<input id="fName" required maxlength="40"></label>
+    <label>Category<input id="fCat" required maxlength="20" placeholder="e.g. Shoes"></label>
+    <label>Price (₹)<input id="fPrice" type="number" min="1" step="1" required></label>
+    <label>Emoji icon<input id="fEmoji" maxlength="4" placeholder="👟"></label>
+    <label>Description<textarea id="fDesc" rows="3" maxlength="200"></textarea></label>
+    <div class="row" style="margin-top:16px">
+      <button type="button" id="formCancel">Cancel</button>
+      <button class="primary" type="submit">Save product</button>
+    </div>
+  </form>
+</div>
+
+<!-- Single product modal -->
+<div class="overlay" id="viewOverlay"><div class="modal" id="viewBox"></div></div>
+
+<!-- Cart drawer -->
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2 style="margin:0">Your cart</h2><button id="closeCart">Close</button>
+  </div>
+  <div id="cartList"></div>
+  <div class="total"><span>Total</span><span id="total">₹0</span></div>
+  <button class="danger" id="clearCart">Clear cart</button>
+</aside>
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
